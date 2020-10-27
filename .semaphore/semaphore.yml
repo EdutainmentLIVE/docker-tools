@@ -15,7 +15,6 @@ blocks:
             - checkout
             - cache restore hackage
             - cabal update
-            - cache delete hackage
             - cache store hackage ~/.cabal
             - cabal freeze
             - cat cabal.project.freeze
