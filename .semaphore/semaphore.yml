@@ -1,4 +1,5 @@
 version: v1.0
+name: Default pipeline
 agent:
   machine:
     type: e1-standard-2
@@ -6,7 +7,13 @@ agent:
     - name: main
       image: semaphoreci/haskell:8.10.2
 blocks:
-  - task:
+  - name: Default block
+    task:
       jobs:
-        - commands:
+        - name: Default job
+          commands:
             - checkout
+            - cache restore cabal
+            - cabal update
+            - cabal install hasktags-0.71.2
+            - cache store cabal ~/.cabal
