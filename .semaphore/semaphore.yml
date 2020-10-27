@@ -1,0 +1,9 @@
+version: v1.0
+agent:
+  machine:
+    type: e1-standard-2
+blocks:
+  - task:
+      jobs:
+        - commands:
+            - checkout
