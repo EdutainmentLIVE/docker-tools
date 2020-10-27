@@ -6,3 +6,4 @@ library
   build-depends:
     base == 4.14.1.0
     , hasktags == 0.71.2
+    , weeder == 2.1.2
