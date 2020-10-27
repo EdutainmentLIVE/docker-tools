@@ -13,7 +13,10 @@ blocks:
         - name: Default job
           commands:
             - checkout
+            - cache restore hackage
             - cabal update
+            - cache delete hackage
+            - cache store hackage ~/.cabal
             - cabal freeze
             - cat cabal.project.freeze
             - cache restore cabal-$( checksum cabal.project.freeze ),cabal
