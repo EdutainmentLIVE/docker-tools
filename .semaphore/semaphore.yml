@@ -18,4 +18,4 @@ blocks:
             - cat cabal.project.freeze
             - cache restore cabal-$( checksum cabal.project.freeze ),cabal
             - cabal build
-            - cache store cabal-$( checksum cabal.project.freeze ) ~/.cabal
+            - cache store cabal-$( checksum cabal.project.freeze ) ~/.cabal/store
