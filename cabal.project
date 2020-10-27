@@ -1,2 +1,5 @@
+allow-newer:
+  *:ansi-terminal,
+  *:optparse-applicative
 jobs: $ncpus
 packages: .
