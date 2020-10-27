@@ -13,7 +13,9 @@ blocks:
         - name: Default job
           commands:
             - checkout
-            - cache restore cabal
+            - cabal freeze
+            - cat cabal.project.freeze
+            - cache restore cabal-$( checksum cabal.project.freeze ),cabal
             - cabal update
-            - cabal install hasktags-0.71.2
-            - cache store cabal ~/.cabal
+            - cabal build
+            - cache store cabal-$( checksum cabal.project.freeze ) ~/.cabal

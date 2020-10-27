@@ -1,0 +1,8 @@
+cabal-version: >= 1.2
+name: itprotv
+version: 0
+build-type: Simple
+library
+  build-depends:
+    base == 4.14.1.0
+    , hasktags == 0.71.2
