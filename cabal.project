@@ -1,5 +1,20 @@
+-- TODO: Each of these represents a change that should probably be made
+-- upstream. Consider making them more specific, then opening PRs for each of
+-- them, then adding those as Git package sources.
 allow-newer:
+  *:aeson,
   *:ansi-terminal,
-  *:optparse-applicative
+  *:base,
+  *:ghc,
+  *:ghc-boot-th,
+  *:optparse-applicative,
+  *:strict
+
 jobs: $ncpus
 packages: .
+
+source-repository-package
+  -- https://github.com/lspitzner/brittany/pull/312
+  type: git
+  location: https://github.com/bubba/brittany
+  tag: c59655f10d5ad295c2481537fc8abf0a297d9d1c
