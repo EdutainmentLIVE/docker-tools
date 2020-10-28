@@ -1,20 +1,47 @@
--- TODO: Each of these represents a change that should probably be made
--- upstream. Consider making them more specific, then opening PRs for each of
--- them, then adding those as Git package sources.
-allow-newer:
-  *:aeson,
-  *:ansi-terminal,
-  *:base,
-  *:ghc,
-  *:ghc-boot-th,
-  *:optparse-applicative,
-  *:strict
-
 jobs: $ncpus
 packages: .
 
 source-repository-package
   -- https://github.com/lspitzner/brittany/pull/312
+  -- plus my changes for strict 0.4
   type: git
-  location: https://github.com/bubba/brittany
-  tag: c59655f10d5ad295c2481537fc8abf0a297d9d1c
+  location: https://github.com/tfausak/brittany
+  tag: 4250d9a045b9501fff7979432b0cab71a759b787
+
+source-repository-package
+  -- https://github.com/kowainik/colourista/pull/46
+  type: git
+  location: https://github.com/tfausak/colourista
+  tag: 1f14e27d7cb591b325c8a7c0d9257e30a11b93e2
+
+source-repository-package
+  -- https://github.com/lspitzner/data-tree-print/pull/2
+  type: git
+  location: https://github.com/bubba/data-tree-print
+  tag: 198db3da74a2a4f8f80ebc78722ff3762267bb4e
+
+source-repository-package
+  -- https://github.com/kowainik/extensions/pull/66
+  type: git
+  location: https://github.com/tfausak/extensions
+  tag: b4db821f4108c9b55eacd5e783cbcc2fad5bdab6
+
+source-repository-package
+  -- https://github.com/kowainik/stan/pull/398
+  type: git
+  location: https://github.com/tfausak/stan
+  tag: 39ee9a15228c23e1211816bdd0ec056733a11bcc
+
+source-repository-package
+  -- https://github.com/kowainik/trial/pull/63
+  type: git
+  location: https://github.com/tfausak/trial
+  tag: 725ee0d9365058b8de823fd1b8fa2d761126dff2
+  subdir: trial
+
+source-repository-package
+  -- https://github.com/kowainik/trial/pull/63
+  type: git
+  location: https://github.com/tfausak/trial
+  tag: 725ee0d9365058b8de823fd1b8fa2d761126dff2
+  subdir: trial-optparse-applicative
