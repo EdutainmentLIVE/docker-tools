@@ -9,10 +9,10 @@ agent:
 blocks:
   - name: Default block
     task:
+      secrets:
+        - name: docker-hub
       jobs:
         - name: Default job
-          secrets:
-            - name: docker-hub
           commands:
             - checkout
             - cache restore hackage
