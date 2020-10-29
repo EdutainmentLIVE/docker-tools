@@ -24,14 +24,33 @@ blocks:
             - cabal build
             - cache store cabal-$( checksum cabal.project.freeze ) ~/.cabal/store
 
-            - cabal install --installdir hasktags --install-method copy hasktags
-            - strip hasktags/hasktags
+            - cabal install --installdir bin --install-method copy
+              apply-refact
+              hasktags
+              hlint
+              weeder
+            - strip bin/*
+
+            - cp --recursive --target-directory lib --verbose
+              /opt/ghc/8.10.2/lib/ghc-8.10.2/llvm-passes
+              /opt/ghc/8.10.2/lib/ghc-8.10.2/llvm-targets
+              /opt/ghc/8.10.2/lib/ghc-8.10.2/package.conf.d
+              /opt/ghc/8.10.2/lib/ghc-8.10.2/platformConstants
+              /opt/ghc/8.10.2/lib/ghc-8.10.2/settings
+
+            - cp bin/hasktags hasktags/
             - docker build --tag "itprotv/hasktags:$SEMAPHORE_GIT_SHA" hasktags
             - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
             - docker push "itprotv/hasktags:$SEMAPHORE_GIT_SHA"
 
-            - cabal install --installdir weeder --install-method copy weeder
-            - strip weeder/weeder
+            - cp bin/hlint hlint/
+            - cp bin/refactor hlint/
+            - cp lib hlint/ghc-lib
+            - docker build --tag "itprotv/hlint:$SEMAPHORE_GIT_SHA" hlint
+            - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+            - docker push "itprotv/hlint:$SEMAPHORE_GIT_SHA"
+
+            - cp bin/weeder weeder/
             - docker build --tag "itprotv/weeder:$SEMAPHORE_GIT_SHA" weeder
             - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
             - docker push "itprotv/weeder:$SEMAPHORE_GIT_SHA"

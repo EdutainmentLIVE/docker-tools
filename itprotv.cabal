@@ -5,6 +5,7 @@ build-type: Simple
 library
   build-depends:
     base == 4.14.1.0
+    , apply-refact == 0.8.2.1
     , brittany == 0.12.1.1
     , hasktags == 0.71.2
     , hlint == 3.2.1
