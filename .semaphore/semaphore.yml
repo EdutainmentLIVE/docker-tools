@@ -23,7 +23,15 @@ blocks:
             - cache restore cabal-$( checksum cabal.project.freeze ),cabal
             - cabal build
             - cache store cabal-$( checksum cabal.project.freeze ) ~/.cabal/store
+
             - cabal install --installdir hasktags --install-method copy hasktags
+            - strip hasktags/hasktags
             - docker build --tag "itprotv/hasktags:$SEMAPHORE_GIT_SHA" hasktags
             - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
             - docker push "itprotv/hasktags:$SEMAPHORE_GIT_SHA"
+
+            - cabal install --installdir weeder --install-method copy weeder
+            - strip weeder/weeder
+            - docker build --tag "itprotv/weeder:$SEMAPHORE_GIT_SHA" weeder
+            - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+            - docker push "itprotv/weeder:$SEMAPHORE_GIT_SHA"
