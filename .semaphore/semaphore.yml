@@ -31,6 +31,7 @@ blocks:
               weeder
             - strip bin/*
 
+            - mkdir lib
             - cp --recursive --target-directory lib --verbose
               /opt/ghc/8.10.2/lib/ghc-8.10.2/llvm-passes
               /opt/ghc/8.10.2/lib/ghc-8.10.2/llvm-targets
