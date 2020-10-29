@@ -29,6 +29,7 @@ blocks:
               brittany
               hasktags
               hlint
+              stan
               weeder
             - strip bin/*
 
@@ -57,6 +58,11 @@ blocks:
             - docker build --tag "itprotv/hlint:$SEMAPHORE_GIT_SHA" hlint
             - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
             - docker push "itprotv/hlint:$SEMAPHORE_GIT_SHA"
+
+            - cp bin/stan stan/
+            - docker build --tag "itprotv/stan:$SEMAPHORE_GIT_SHA" stan
+            - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+            - docker push "itprotv/stan:$SEMAPHORE_GIT_SHA"
 
             - cp bin/weeder weeder/
             - docker build --tag "itprotv/weeder:$SEMAPHORE_GIT_SHA" weeder
