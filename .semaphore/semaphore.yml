@@ -26,6 +26,7 @@ blocks:
 
             - cabal install --installdir bin --install-method copy
               apply-refact
+              brittany
               hasktags
               hlint
               weeder
@@ -38,6 +39,12 @@ blocks:
               /opt/ghc/8.10.2/lib/ghc-8.10.2/package.conf.d
               /opt/ghc/8.10.2/lib/ghc-8.10.2/platformConstants
               /opt/ghc/8.10.2/lib/ghc-8.10.2/settings
+
+            - cp bin/brittany brittany/
+            - cp --recursive lib brittany/ghc-lib
+            - docker build --tag "itprotv/brittany:$SEMAPHORE_GIT_SHA" brittany
+            - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+            - docker push "itprotv/brittany:$SEMAPHORE_GIT_SHA"
 
             - cp bin/hasktags hasktags/
             - docker build --tag "itprotv/hasktags:$SEMAPHORE_GIT_SHA" hasktags
