@@ -32,7 +32,7 @@ blocks:
             - strip bin/*
 
             - mkdir lib
-            - cp --recursive --target-directory lib --verbose
+            - cp --recursive --target-directory lib
               /opt/ghc/8.10.2/lib/ghc-8.10.2/llvm-passes
               /opt/ghc/8.10.2/lib/ghc-8.10.2/llvm-targets
               /opt/ghc/8.10.2/lib/ghc-8.10.2/package.conf.d
@@ -46,7 +46,7 @@ blocks:
 
             - cp bin/hlint hlint/
             - cp bin/refactor hlint/
-            - cp lib hlint/ghc-lib
+            - cp --recursive lib hlint/ghc-lib
             - docker build --tag "itprotv/hlint:$SEMAPHORE_GIT_SHA" hlint
             - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
             - docker push "itprotv/hlint:$SEMAPHORE_GIT_SHA"
