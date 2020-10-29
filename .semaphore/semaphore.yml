@@ -11,6 +11,8 @@ blocks:
     task:
       jobs:
         - name: Default job
+          secrets:
+            - name: docker-hub
           commands:
             - checkout
             - cache restore hackage
@@ -21,3 +23,7 @@ blocks:
             - cache restore cabal-$( checksum cabal.project.freeze ),cabal
             - cabal build
             - cache store cabal-$( checksum cabal.project.freeze ) ~/.cabal/store
+            - cabal install --installdir hasktags --install-method copy hasktags
+            - docker build --tag "itprotv/hasktags:$SEMAPHORE_GIT_SHA" hasktags
+            - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+            - docker push "itprotv/hasktags:$SEMAPHORE_GIT_SHA"
