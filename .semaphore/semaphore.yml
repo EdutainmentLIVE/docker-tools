@@ -42,9 +42,10 @@ blocks:
       secrets:
         - name: docker-hub
       prologue:
-        - checkout
-        - artifact pull workflow output
-        - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+        commands:
+          - checkout
+          - artifact pull workflow output
+          - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
       jobs:
         - name: Brittany job
           commands:
