@@ -11,8 +11,8 @@ source-repository-package
 source-repository-package
   -- https://github.com/kowainik/colourista/pull/46
   type: git
-  location: https://github.com/tfausak/colourista
-  tag: 1f14e27d7cb591b325c8a7c0d9257e30a11b93e2
+  location: https://github.com/kowainik/colourista
+  tag: 15ace92105b56eba4ea3717bd55f733afe5be401
 
 source-repository-package
   -- https://github.com/lspitzner/data-tree-print/pull/2
@@ -23,25 +23,25 @@ source-repository-package
 source-repository-package
   -- https://github.com/kowainik/extensions/pull/66
   type: git
-  location: https://github.com/tfausak/extensions
-  tag: b4db821f4108c9b55eacd5e783cbcc2fad5bdab6
+  location: https://github.com/kowainik/extensions
+  tag: 3960e8fa3d80f8ad8a0dc053776ca76f51076492
 
 source-repository-package
   -- https://github.com/kowainik/stan/pull/398
   type: git
-  location: https://github.com/tfausak/stan
-  tag: 39ee9a15228c23e1211816bdd0ec056733a11bcc
+  location: https://github.com/kowainik/stan
+  tag: eed7dc32157be02911020ca2590bbb4eae109b87
 
 source-repository-package
   -- https://github.com/kowainik/trial/pull/63
   type: git
-  location: https://github.com/tfausak/trial
-  tag: 725ee0d9365058b8de823fd1b8fa2d761126dff2
+  location: https://github.com/kowainik/trial
+  tag: f4ef2d4e160687c6072781b18b47a0f8a453366e
   subdir: trial
 
 source-repository-package
   -- https://github.com/kowainik/trial/pull/63
   type: git
-  location: https://github.com/tfausak/trial
-  tag: 725ee0d9365058b8de823fd1b8fa2d761126dff2
+  location: https://github.com/kowainik/trial
+  tag: f4ef2d4e160687c6072781b18b47a0f8a453366e
   subdir: trial-optparse-applicative
