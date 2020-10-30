@@ -2,6 +2,7 @@
 set -o errexit
 checkout
 artifact pull workflow output
+chmod +x output/bin/*
 cp output/bin/* "$TOOL"
 cp --recursive output/lib "$TOOL/ghc-lib"
 docker build --tag "itprotv/$TOOL:$SEMAPHORE_GIT_SHA" "$TOOL"
