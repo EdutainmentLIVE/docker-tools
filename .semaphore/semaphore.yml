@@ -14,6 +14,10 @@ blocks:
           commands_file: build.sh
   - name: Docker block
     task:
+      agent:
+        machine:
+          type: e1-standard-2
+          os_image: ubuntu1804
       secrets:
         - name: docker-hub
       jobs:
