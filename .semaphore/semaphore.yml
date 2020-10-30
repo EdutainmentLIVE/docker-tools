@@ -28,6 +28,7 @@ blocks:
               hasktags
               hlint
               stan
+              stylish-haskell
               weeder
             - strip output/bin/*
             - cp --recursive --target-directory output/lib
