@@ -1,4 +1,4 @@
-FROM debian:10.5-slim
+FROM debian:10.6-slim
 COPY ghc-lib/ /opt/ghc/8.10.2/lib/ghc-8.10.2/
 COPY hlint /usr/local/bin/
 COPY refactor /usr/local/bin/
