@@ -7,12 +7,10 @@ agent:
     - name: main
       image: semaphoreci/haskell:8.10.2
 blocks:
-  - name: Default block
+  - name: Build block
     task:
-      secrets:
-        - name: docker-hub
       jobs:
-        - name: Default job
+        - name: Build job
           commands:
             - checkout
             - cache restore hackage
@@ -23,9 +21,7 @@ blocks:
             - cache restore cabal-$( checksum cabal.project.freeze ),cabal
             - cabal build
             - cache store cabal-$( checksum cabal.project.freeze ) ~/.cabal/store
-
             - mkdir --parents output/bin output/lib
-
             - cabal install --installdir output/bin --install-method copy
               apply-refact
               brittany
@@ -34,38 +30,47 @@ blocks:
               stan
               weeder
             - strip output/bin/*
-
             - cp --recursive --target-directory output/lib
               /opt/ghc/8.10.2/lib/ghc-8.10.2/llvm-passes
               /opt/ghc/8.10.2/lib/ghc-8.10.2/llvm-targets
               /opt/ghc/8.10.2/lib/ghc-8.10.2/package.conf.d
               /opt/ghc/8.10.2/lib/ghc-8.10.2/platformConstants
               /opt/ghc/8.10.2/lib/ghc-8.10.2/settings
-
+            - artifact push workflow output --expire-in 1w
+  - name: Docker block
+    task:
+      secrets:
+        - name: docker-hub
+      prologue:
+        - checkout
+        - artifact pull workflow output
+        - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+      jobs:
+        - name: Brittany job
+          commands:
             - cp output/bin/brittany brittany/
             - cp --recursive output/lib brittany/ghc-lib
             - docker build --tag "itprotv/brittany:$SEMAPHORE_GIT_SHA" brittany
-            - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
             - docker push "itprotv/brittany:$SEMAPHORE_GIT_SHA"
-
+        - name: Hasktags job
+          commands:
             - cp output/bin/hasktags hasktags/
             - docker build --tag "itprotv/hasktags:$SEMAPHORE_GIT_SHA" hasktags
-            - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
             - docker push "itprotv/hasktags:$SEMAPHORE_GIT_SHA"
-
+        - name: Hlint job
+          commands:
             - cp output/bin/hlint hlint/
             - cp output/bin/refactor hlint/
-            - cp --recursive lib hlint/ghc-lib
+            - cp --recursive output/lib hlint/ghc-lib
             - docker build --tag "itprotv/hlint:$SEMAPHORE_GIT_SHA" hlint
-            - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
             - docker push "itprotv/hlint:$SEMAPHORE_GIT_SHA"
-
+        - name: Stan job
+          commands:
             - cp output/bin/stan stan/
             - docker build --tag "itprotv/stan:$SEMAPHORE_GIT_SHA" stan
-            - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
             - docker push "itprotv/stan:$SEMAPHORE_GIT_SHA"
-
+        - name: Weeder job
+          commands:
             - cp output/bin/weeder weeder/
             - docker build --tag "itprotv/weeder:$SEMAPHORE_GIT_SHA" weeder
-            - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
             - docker push "itprotv/weeder:$SEMAPHORE_GIT_SHA"
