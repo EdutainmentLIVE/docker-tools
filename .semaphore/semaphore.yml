@@ -2,7 +2,7 @@ version: v1.0
 name: Default pipeline
 agent:
   machine:
-    type: e1-standard-8
+    type: e1-standard-2
   containers:
     - name: main
       image: semaphoreci/haskell:8.10.2
