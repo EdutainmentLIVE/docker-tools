@@ -11,56 +11,27 @@ blocks:
     task:
       jobs:
         - name: Build job
-          commands:
-            - checkout
-            - cache restore hackage
-            - cabal update
-            - cache store hackage ~/.cabal
-            - cabal freeze
-            - cat cabal.project.freeze
-            - cache restore cabal-$( checksum cabal.project.freeze ),cabal
-            - cabal build
-            - cache store cabal-$( checksum cabal.project.freeze ) ~/.cabal/store
-            - mkdir --parents output/bin output/lib
-            - cabal install --installdir output/bin --install-method copy
-              apply-refact
-              brittany
-              hasktags
-              hlint
-              stan
-              stylish-haskell
-              weeder
-            - strip output/bin/*
-            - cp --recursive --target-directory output/lib
-              /opt/ghc/8.10.2/lib/ghc-8.10.2/llvm-passes
-              /opt/ghc/8.10.2/lib/ghc-8.10.2/llvm-targets
-              /opt/ghc/8.10.2/lib/ghc-8.10.2/package.conf.d
-              /opt/ghc/8.10.2/lib/ghc-8.10.2/platformConstants
-              /opt/ghc/8.10.2/lib/ghc-8.10.2/settings
-            - artifact push workflow output --expire-in 1w
+          commands_file: build.sh
   - name: Docker block
     task:
       secrets:
         - name: docker-hub
-      prologue:
-        commands:
-          - checkout
-          - artifact pull workflow output
-          - cp output/bin/* "$TOOL"
-          - cp --recursive output/lib "$TOOL/ghc-lib"
-          - docker build --tag "itprotv/$TOOL:$SEMAPHORE_GIT_SHA" $TOOL
-          - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
-          - docker push "itprotv/$TOOL:$SEMAPHORE_GIT_SHA"
       jobs:
         - name: Brittany job
           env_vars: [ { name: TOOL, value: brittany } ]
+          commands_file: docker.sh
         - name: Hasktags job
           env_vars: [ { name: TOOL, value: hasktags } ]
+          commands_file: docker.sh
         - name: Hlint job
           env_vars: [ { name: TOOL, value: hlint } ]
+          commands_file: docker.sh
         - name: Stan job
           env_vars: [ { name: TOOL, value: stan } ]
+          commands_file: docker.sh
         - name: Stylish Haskell job
           env_vars: [ { name: TOOL, value: stylish-haskell } ]
+          commands_file: docker.sh
         - name: Weeder job
           env_vars: [ { name: TOOL, value: weeder } ]
+          commands_file: docker.sh
