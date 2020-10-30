@@ -70,6 +70,12 @@ blocks:
             - cp output/bin/stan stan/
             - docker build --tag "itprotv/stan:$SEMAPHORE_GIT_SHA" stan
             - docker push "itprotv/stan:$SEMAPHORE_GIT_SHA"
+        - name: Stylish Haskell job
+          commands:
+            - cp output/bin/stylish-haskell stylish-haskell/
+            - cp --recursive output/lib hlint/ghc-lib
+            - docker build --tag "itprotv/stylish-haskell:$SEMAPHORE_GIT_SHA" stylish-haskell
+            - docker push "itprotv/stylish-haskell:$SEMAPHORE_GIT_SHA"
         - name: Weeder job
           commands:
             - cp output/bin/weeder weeder/
