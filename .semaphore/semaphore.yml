@@ -46,39 +46,21 @@ blocks:
         commands:
           - checkout
           - artifact pull workflow output
+          - cp output/bin/* "$TOOL"
+          - cp --recursive output/lib "$TOOL/ghc-lib"
+          - docker build --tag "itprotv/$TOOL:$SEMAPHORE_GIT_SHA" $TOOL
           - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+          - docker push "itprotv/$TOOL:$SEMAPHORE_GIT_SHA"
       jobs:
         - name: Brittany job
-          commands:
-            - cp output/bin/brittany brittany/
-            - cp --recursive output/lib brittany/ghc-lib
-            - docker build --tag "itprotv/brittany:$SEMAPHORE_GIT_SHA" brittany
-            - docker push "itprotv/brittany:$SEMAPHORE_GIT_SHA"
+          env_vars: [ { name: TOOL, value: brittany } ]
         - name: Hasktags job
-          commands:
-            - cp output/bin/hasktags hasktags/
-            - docker build --tag "itprotv/hasktags:$SEMAPHORE_GIT_SHA" hasktags
-            - docker push "itprotv/hasktags:$SEMAPHORE_GIT_SHA"
+          env_vars: [ { name: TOOL, value: hasktags } ]
         - name: Hlint job
-          commands:
-            - cp output/bin/hlint hlint/
-            - cp output/bin/refactor hlint/
-            - cp --recursive output/lib hlint/ghc-lib
-            - docker build --tag "itprotv/hlint:$SEMAPHORE_GIT_SHA" hlint
-            - docker push "itprotv/hlint:$SEMAPHORE_GIT_SHA"
+          env_vars: [ { name: TOOL, value: hlint } ]
         - name: Stan job
-          commands:
-            - cp output/bin/stan stan/
-            - docker build --tag "itprotv/stan:$SEMAPHORE_GIT_SHA" stan
-            - docker push "itprotv/stan:$SEMAPHORE_GIT_SHA"
+          env_vars: [ { name: TOOL, value: stan } ]
         - name: Stylish Haskell job
-          commands:
-            - cp output/bin/stylish-haskell stylish-haskell/
-            - cp --recursive output/lib stylish-haskell/ghc-lib
-            - docker build --tag "itprotv/stylish-haskell:$SEMAPHORE_GIT_SHA" stylish-haskell
-            - docker push "itprotv/stylish-haskell:$SEMAPHORE_GIT_SHA"
+          env_vars: [ { name: TOOL, value: stylish-haskell } ]
         - name: Weeder job
-          commands:
-            - cp output/bin/weeder weeder/
-            - docker build --tag "itprotv/weeder:$SEMAPHORE_GIT_SHA" weeder
-            - docker push "itprotv/weeder:$SEMAPHORE_GIT_SHA"
+          env_vars: [ { name: TOOL, value: weeder } ]
