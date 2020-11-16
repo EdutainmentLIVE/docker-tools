@@ -1,24 +1,17 @@
-jobs: $ncpus
+jobs: 1
 packages: .
 
 source-repository-package
-  -- https://github.com/lspitzner/brittany/pull/312
-  -- plus my changes for strict 0.4
+  -- https://github.com/lspitzner/brittany/pull/324
   type: git
-  location: https://github.com/tfausak/brittany
-  tag: 4250d9a045b9501fff7979432b0cab71a759b787
+  location: https://github.com/lspitzner/brittany
+  tag: 7dedb0c17de82afb8c4653416b63c8afeedc9d63
 
 source-repository-package
   -- https://github.com/kowainik/colourista/pull/46
   type: git
   location: https://github.com/kowainik/colourista
   tag: 15ace92105b56eba4ea3717bd55f733afe5be401
-
-source-repository-package
-  -- https://github.com/lspitzner/data-tree-print/pull/2
-  type: git
-  location: https://github.com/bubba/data-tree-print
-  tag: 198db3da74a2a4f8f80ebc78722ff3762267bb4e
 
 source-repository-package
   -- https://github.com/kowainik/extensions/pull/66
