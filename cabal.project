@@ -1,4 +1,4 @@
-jobs: $ncpus
+jobs: 1
 packages: .
 
 source-repository-package
