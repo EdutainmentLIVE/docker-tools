@@ -22,8 +22,8 @@ source-repository-package
 source-repository-package
   -- https://github.com/jaspervdj/stylish-haskell/pull/336
   type: git
-  location: https://github.com/tfausak/stylish-haskell
-  tag: 057f4a8c241a5aefb9189edf4c5056cd5c4b67f6
+  location: https://github.com/jaspervdj/stylish-haskell
+  tag: 8f8034c833a93f2dc8d0fc0a9a6f8806fbc1766e
 
 source-repository-package
   -- https://github.com/kowainik/trial/pull/63
