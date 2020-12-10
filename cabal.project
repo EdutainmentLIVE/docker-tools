@@ -5,36 +5,36 @@ source-repository-package
   -- https://github.com/kowainik/colourista/pull/46
   type: git
   location: https://github.com/kowainik/colourista
-  tag: 15ace92105b56eba4ea3717bd55f733afe5be401
+  tag: c73154cd46c44fa710f4ae2d21c3fbacf65b8007
 
 source-repository-package
   -- https://github.com/kowainik/extensions/pull/66
   type: git
   location: https://github.com/kowainik/extensions
-  tag: 3960e8fa3d80f8ad8a0dc053776ca76f51076492
+  tag: 8c9510e8072e477561b2406136ddd375795501bf
 
 source-repository-package
   -- https://github.com/kowainik/stan/pull/398
   type: git
   location: https://github.com/kowainik/stan
-  tag: eed7dc32157be02911020ca2590bbb4eae109b87
+  tag: 86977865db1cd2e46985fc5e787d84cb880e0af4
 
 source-repository-package
   -- https://github.com/jaspervdj/stylish-haskell/pull/336
   type: git
   location: https://github.com/tfausak/stylish-haskell
-  tag: 074ec19abfeb0184f31e247957b967f4da7a8e45
+  tag: 057f4a8c241a5aefb9189edf4c5056cd5c4b67f6
 
 source-repository-package
   -- https://github.com/kowainik/trial/pull/63
   type: git
   location: https://github.com/kowainik/trial
-  tag: f4ef2d4e160687c6072781b18b47a0f8a453366e
+  tag: 1126f99749ae20ceb11df7750955b548e01b130a
   subdir: trial
 
 source-repository-package
   -- https://github.com/kowainik/trial/pull/63
   type: git
   location: https://github.com/kowainik/trial
-  tag: f4ef2d4e160687c6072781b18b47a0f8a453366e
+  tag: 1126f99749ae20ceb11df7750955b548e01b130a
   subdir: trial-optparse-applicative
