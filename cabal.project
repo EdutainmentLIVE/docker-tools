@@ -2,12 +2,6 @@ jobs: 1
 packages: .
 
 source-repository-package
-  -- https://github.com/lspitzner/brittany/pull/324
-  type: git
-  location: https://github.com/lspitzner/brittany
-  tag: 7dedb0c17de82afb8c4653416b63c8afeedc9d63
-
-source-repository-package
   -- https://github.com/kowainik/colourista/pull/46
   type: git
   location: https://github.com/kowainik/colourista
