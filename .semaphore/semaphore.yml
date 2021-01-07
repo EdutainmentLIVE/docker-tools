@@ -7,8 +7,8 @@ agent:
   containers:
     - name: main
       image: itprotv/stack:v2.5.1
-      command:
-          - echo $SEMAPHORE_PIPELINE_ID
+      command: echo $SEMAPHORE_PIPELINE_ID
+      
 blocks:
   - name: Build block
     task:
