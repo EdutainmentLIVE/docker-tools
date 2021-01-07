@@ -7,7 +7,7 @@ agent:
   containers:
     - name: main
       image: itprotv/stack:v2.5.1
-      command: sudo apt-get update
+      command: echo "y u no work commandz"
 
 blocks:
   - name: Build block
