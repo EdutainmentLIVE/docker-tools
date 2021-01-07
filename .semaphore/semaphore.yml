@@ -7,7 +7,7 @@ agent:
   containers:
     - name: main
       image: itprotv/stack:v2.5.1
-      command: build .
+      command: docker build .
 
 blocks:
   - name: Build block
