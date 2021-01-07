@@ -6,8 +6,7 @@ agent:
     os_image: ubuntu1804
   containers:
     - name: main
-      image: itprotv/stack:v2.5.1
-      command: sh foo.sh
+      command: build .
 
 blocks:
   - name: Build block
