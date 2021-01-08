@@ -1,9 +1,10 @@
 #! /usr/bin/env sh
 set -o errexit
 checkout
+cache restore stack
 mkdir --parents output/bin output/lib
-docker run --interactive --rm --tty --volume "$PWD:$PWD" --workdir "$PWD" itprotv/stack:v2.5.1 stack --color never --jobs 1 --local-bin-path output/bin --no-terminal build --copy-bins apply-refact brittany hasktags hlint stan stylish-haskell weeder
+./stack.sh --local-bin-path output/bin build --copy-bins apply-refact brittany hasktags hlint stan stylish-haskell weeder
+cache store stack .stack
 strip output/bin/*
-d='/root/.stack/programs/x86_64-linux/ghc-tinfo6-8.10.3/lib/ghc-8.10.3'
-docker run --interactive --rm --tty --volume "$PWD:$PWD" --workdir "$PWD" itprotv/stack:v2.5.1 cp --recursive --target-directory output/lib --verbose "$d/llvm-passes" "$d/llvm-targets" "$d/package.conf.d" "$d/platformConstants" "$d/settings"
+./stack.sh exec -- sh -c 'target="$PWD/output/lib" cd "$STACK_ROOT/programs/x86_64-linux/ghc-tinfo6-8.10.3/lib/ghc-8.10.3" && cp --recursive --target-directory "$target" --verbose llvm-passes llvm-targets package.conf.d platformConstants settings'
 artifact push workflow output --expire-in 1w

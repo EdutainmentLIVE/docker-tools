@@ -1,5 +1,4 @@
 resolver: https://raw.githubusercontent.com/EdutainmentLIVE/snapshot/fc92e29ae0192b23f678c7106da6e896708e43c0/snapshot.yaml
-allow-different-user: true
 extra-deps:
   - brittany-0.13.1.0
   - data-tree-print-0.1.0.2
