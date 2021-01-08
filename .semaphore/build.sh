@@ -2,7 +2,7 @@
 set -o errexit
 checkout
 cache restore stack
-mkdir --parents output/bin output/lib
+mkdir --parents .stack output/bin output/lib
 ./stack.sh --local-bin-path output/bin build --copy-bins apply-refact brittany hasktags hlint stan stylish-haskell weeder
 cache store stack .stack
 strip output/bin/*
