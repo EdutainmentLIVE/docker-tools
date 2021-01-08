@@ -1,6 +1,5 @@
 #! /usr/bin/env sh
 set -o errexit
-yum update -y && yum install -y lftp
 checkout
 cache restore hackage
 cabal update
