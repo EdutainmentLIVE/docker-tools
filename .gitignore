@@ -1,2 +1,3 @@
-/cabal.project.freeze
-/dist-newstyle/
+/.stack-work/
+/output/
+/stack.yaml.lock
