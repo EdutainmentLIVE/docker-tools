@@ -1,2 +1,2 @@
-FROM amazonlinux:2.0.20200722.0
+FROM ubuntu:18.04
 COPY weeder /usr/local/bin/
