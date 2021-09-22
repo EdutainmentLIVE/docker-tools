@@ -8,5 +8,5 @@ exec docker run \
   --tty \
   --volume "$PWD:$PWD" \
   --workdir "$PWD" \
-  itprotv/stack:v2.5.1 \
+  itprotv/stack:2.7.3 \
   stack --allow-different-user --color never --jobs 2 --no-terminal "$@"
