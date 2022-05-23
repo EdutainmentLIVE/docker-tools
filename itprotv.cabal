@@ -4,11 +4,8 @@ version: 0
 build-type: Simple
 library
   build-depends:
-    base == 4.14.3.0
-    , apply-refact == 0.9.1.0
-    , brittany == 0.13.1.2
-    , hasktags == 0.72.0
-    , hlint == 3.2.7
-    , stan == 0.0.1.0
-    , stylish-haskell == 0.13.0.0
-    , weeder == 2.2.0
+    base == 4.15.1.0
+    , apply-refact == 0.9.3.0
+    , brittany == 0.14.0.2
+    , hlint == 3.3.6
+    , weeder == 2.3.1
